@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} <title>nowKB | results</title> {% endblock %}
+{% block content %}
+<main>
+    <div class="header">
+        <div class="col1">
+            <a href="{% url 'KB.home' %}">
+                <h1 class="title">now<span>KB</span></h1>
+            </a>
+            <div class="btns">
+                <button type="submit" class="btn">Projects</button>
+                <button type="submit" class="btn">Freelancing</button>
+            </div>
+        </div>
+        <form class="search" id="s2" method="POST" action="{% url 'searchresults' %}">
+            {% csrf_token %}
+            <input type="text" class="inp" name="searched" placeholder='"Search"'>
+            <button type="submit" class="sh-btn" onclick="searchresults"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+    <div class="content">
+        <div class="results">
+            <ul>
+
+                {% for result in results %}
+                <li>
+                    <h3><a href="{% url 'info' result.name %}">{{result.name}}</a></h3>
+                    <p>{{result.description}}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="ytlink">
+            <h3><i class="fab fa-youtube"></i> &nbsp; Videos</h3>
+            <div class="vid">
+                <img src="{% static 'images/ytvd.png' %}" alt="ytlink">
+                <a href="#">
+                    <h2> Full Administrator Course For Beginners...</h2>
+                </a>
+            </div>
+        </div>
+        <div class="end-btn">
+            <button type="submit">View All</button>
+            <div class="line"></div>
+        </div>
+    </div>
+</main>
+<a href="{% url 'nowhelp' %}"><button type="submit" class="float-btn">Free Help</button></a>
+
+{% endblock %}

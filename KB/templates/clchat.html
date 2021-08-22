@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/help.css' %}">
+    <title>Client Chat</title>
+</head>
+
+<body>
+    <section class="container">
+        <div class="col col-1">
+            <div class="logo">
+                <a href="{% url 'KB.home' %}">
+                    <h1 class="title">now<span>KB</span></h1>
+                </a>
+                <p>Experts Help</p>
+            </div>
+            <div class="dtls">
+                <img src="{% static 'images/profile.jpeg' %}" alt="image">
+                <h3>Amitabh B</h3>
+                <h4>Software Engg</h4>
+                <p>5 yeras of Saas experience with 10 years of web development experience.</p>
+            </div>
+            <div class="line"></div>
+            <div class="help">
+                <p>Help us to improve ourselves</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <textarea name="feed" id="feed" cols="30" rows="10" placeholder="Write your feedback"></textarea>
+                    <input type="submit" id="submit" name="submit" value="Thanks">
+                </form>
+            </div>
+        </div>
+        <div class="col col-2">
+            <div class="ch">
+                <div class="sh-msg">
+                    <form class="search" id="s1" method="POST" action="{% url 'searchresults' %}">
+                        {% csrf_token %}
+                        <input type="text" class="inp" name="searched" placeholder='"Search for messages"'>
+                        <button type="submit" class="sh-btn" id="sh"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="exp-dtls">
+                    <p>Chat with</p>
+                    <h3>Amitabh B</h3>
+                    <p>nowKB Expert</p>
+                </div>
+                <div class="time"><p>Time stamp</p></div>
+                <div class="chat">
+                    <div class="chat-scroll">
+                        {% for chats in ct %}
+                        {% if chats.ad_or_user == 'cl' %}
+                        <div class="client">
+                            <p>{{chats.chat}}</p>
+                        </div>
+                        {% endif %}
+                        {% if chats.ad_or_user == 'ad' %}
+                        <div class="admin">
+                            <p>{{chats.chat}}</p>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="type">
+                <form class="typee" id="t1" method="POST" action="{% url 'addchat' 'cl' client.id %}">
+                    {% csrf_token %}
+                    <input type="text" class="inp" name="typed" placeholder='"Type here.........."'>
+                    <button type="submit" class="tp-btn" id="tp"><i class="far fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="col col-3">
+            <h3>Personal Project Work</h3>
+            <div>
+                <i class="fas fa-desktop"></i>
+                <u><a href="">www.mariposadigital.com</a></u>
+            </div>
+            <h3>Our Youtube Channel</h3>
+            <div>
+                <i class="fab fa-youtube"></i>
+                <u><a href="">www.youtube.com/nowkb</a></u>
+            </div>
+        </div>
+    </section>
+    <!-- <script src="{% static 'js/ws.js' %}"></script> -->
+</body>
+
+</html>

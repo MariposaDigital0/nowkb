@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} <title>nowKB | info</title> {% endblock %}
+{% block content %}
+<main id="mn">
+    <div class="content">
+        <div class="head-1">
+            <a href="{% url 'KB.home' %}">
+                <h1 class="title">now<span>KB</span></h1>
+            </a>
+            <form class="search" id="s2" method="POST" action="{% url 'searchresults' %}">
+                {% csrf_token %}
+                <input type="text" class="inp" name="searched" placeholder='"Search"'>
+                <button type="submit" class="sh-btn" onclick="searchresults"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="results">
+            <h2><span>{{articles.title}}</span> &nbsp;&nbsp; <i class="fas fa-share-alt"></i></h2>
+            <ul>
+                {% for artic in articles %}
+                <li>
+                    {{artic.body | safe}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="head-2">
+            <div class="btns">
+                <button type="submit" class="btn">Projects</button>
+                <button type="submit" class="btn">Freelancing</button>
+            </div>
+        </div>
+        <div class="related-links">
+            <h3>Related links</h3>
+            <ul>
+                <li><a href="#">ServiceNow Full Administrator Course For Beginners...</a></li>
+                <li><a href="#">ServiceNow Full Administrator Course For Beginners...</a></li>
+                <li><a href="#">ServiceNow Full Administrator Course For Beginners...</a></li>
+            </ul>
+        </div>
+        <div class="line"></div>
+        <h3><i class="fab fa-youtube"></i> &nbsp; Videos</h3>
+        <div class="vid">
+            <img src="{% static 'images/ytvd.png' %}" alt="ytlink">
+            <a href="#">
+                <h2> Full Administrator Course For Beginners...</h2>
+            </a>
+        </div>
+        <div class="end-btn-2">
+            <button type="submit">View All</button>
+        </div>
+        <div class="line"></div>
+    </div>
+</main>
+
+<a href="{% url 'nowhelp' %}"><button type="submit" class="float-btn">Free Help</button></a>
+{% endblock %}

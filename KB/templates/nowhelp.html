@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experts Help</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/help.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'KB.home' %}">
+                <h1 class="title">now<span>KB</span></h1>
+            </a>
+            <p>Experts Help</p>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="col-1">
+            <h1>The Experts Answer To You</h1>
+            <h3>All Your ServiceNow Question Virtually</h3>
+            <p>Chat with ServicveNow Experts<br>
+                8 am to 8pm EST</p>
+        </div>
+        <div class="col-2">
+            <div class="row-1">
+                <p>Happy to help You</p>
+            </div>
+            <div class="row-2">
+                <p>Save time with nowKB expert help - easy to<br>access know-how right in the widget.</p>
+            </div>
+            <div class="row-3">
+                <form action="{% url 'nowhelp' %}" method="POST">
+                    {% csrf_token %}
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name">
+                    <label for="name">Your Email</label>
+                    <input type="email" id="email" name="email">
+                    <textarea name="ask" id="ask" cols="30" rows="10" placeholder="Ask your question......."></textarea>
+                    <input type="submit" id="chat" value="START CHAT" name="chat">
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="col-1">
+            <h1>Meet Our Experts</h1>
+            <p>Trusted & Free Help from Experts<br>with 25 years of combined<br>
+                ServiceNow Experience......</p>
+        </div>
+        <div class="col-2">
+            <div class="card">
+                <img src="{% static 'images/profile.jpeg' %}" alt="image">
+                <div class="dtls">
+                    <h3>Amitabh B</h3>
+                    <h4>Software Engg</h4>
+                    <p>5 yeras of Saas experience with 10 years of web development experience.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/profile.jpeg' %}" alt="image">
+                <div class="dtls">
+                    <h3>Amitabh B</h3>
+                    <h4>Software Engg</h4>
+                    <p>5 yeras of Saas experience with 10 years of web development experience.</p>
+                </div>
+            </div>
+            <!-- <div class="card">
+                <img src="{% static 'images/profile.jpeg' %}" alt="image">
+                <div class="dtls">
+                    <h3>Amitabh B</h3>
+                    <h4>Software Engg</h4>
+                    <p>5 yeras of Saas experience with 10 years of web development experience.</p>
+                </div>
+            </div> -->
+        </div>
+    </section>
+</body>
+
+</html>

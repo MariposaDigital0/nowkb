@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>nowKB</title>
+{% endblock %}
+{% block content %}
+<section class="hero">
+    <a href="{% url 'KB.home' %}">
+        <h1 class="title">now<span>KB</span></h1>
+    </a>
+    <form class="search" id="s1" method="POST" action="{% url 'searchresults' %}">
+        {% csrf_token %}
+        <input type="text" class="inp" name="searched"
+            placeholder='"Search your Quaries" or "ServiceNow Related Keywords"'>
+        <button type="submit" class="sh-btn" id="sh"><i class="fas fa-search"></i></button>
+    </form>
+    <form class="search" id="s2" method="POST" action="{% url 'searchresults' %}">
+        {% csrf_token %}
+        <input type="text" class="inp" name="searched" placeholder='"Search"'>
+        <button type="submit" class="sh-btn" id="sh"><i class="fas fa-search"></i></button>
+    </form>
+    <div class="btns">
+        <button type="submit" class="btn">Projects</button>
+        <button type="submit" class="btn">Freelancing</button>
+    </div>
+</section>
+
+<section class="info-banner">
+    <div class="item">
+        <h2>ServiceNow Knowledge Base</h2>
+    </div>
+    <div class="item"><img src="{% static 'images/undraw_Code_typing_re_p8b9 1.png' %}" alt="image"></div>
+    <div class="item">
+        <p>Trusted & Free Help from Experts with 25 years of combined
+            ServiceNow Experience</p>
+    </div>
+</section>
+
+<section class="testimonial">
+    <div class="card">
+        <div class="circle">
+            <div class="cl-1">
+                <img src="{% static 'images/profile.jpeg' %}" alt="">
+            </div>
+        </div>
+        <div class="comments">
+            <p>“They are doing awesome job...thanks for your service”</p>
+        </div>
+    </div>
+</section>
+
+<a href="{% url 'nowhelp' %}"><button type="submit" class="float-btn">Free Help</button></a>
+
+{% endblock %}
